@@ -22,32 +22,8 @@
 </category>
 
 <category>
-    <pattern>Hola *</pattern>
-    <template>
-        Hola! soy bot asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?
-        </template>
-</category>
-
-<category>
-    <pattern>Hola * soy *</pattern>
-    <template> <set name="nombre_cli"><star index="2"/></set> Hola! soy <bot name="name"/>, un asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?</template>
-</category>
-
-<category>
-    <pattern>yo soy *</pattern>
-    <template>Hola <set name="nombre_cli"><star index="1"/></set>! yo soy <bot name="name"/></template>
-</category>
-
-<category>
-    <pattern>me llamo *</pattern>
-    <template><srai>YO SOY <set name="nombre_cli"><star index="1"/></set></srai></template>
-</category>
-
-
-
-<category>
     <pattern>quien soy yo</pattern>
-    <template>Claro! <srai>QUIEN SOY</srai></template>
+    <template>Claro! <formal><srai>QUIEN SOY</srai></formal></template>
 </category>
 
 <category>
@@ -61,26 +37,89 @@
 </category>
 
 <category>
+    <pattern>Hola *</pattern>
+    <template>
+        Hola! soy bot asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?
+        </template>
+</category>
+
+<category>
+    <pattern>Hola * soy *</pattern>
+    <template> <formal><set name="nombre_cli"><star index="2"/></set></formal> hola! soy <bot name="name"/>, un asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?</template>
+</category>
+
+<category>
+    <pattern>yo soy *</pattern>
+    <template>Hola <formal><set name="nombre_cli"><star index="1"/></set>!</formal> yo soy <bot name="name"/></template>
+</category>
+
+<category>
+    <pattern>me llamo *</pattern>
+    <template><srai>YO SOY <set name="nombre_cli"><star index="1"/></set></srai></template>
+</category>
+
+
+<category>
+    <pattern>tienes <set>herramientas</set></pattern>
+    <template>
+        <think>
+        <set name="topic">HERRAMIENTAS</set>
+        </think>
+        <srai>herramientas</srai>
+    </template>
+</category>
+
+
+<category>
+    <pattern>tienes *</pattern>
+    <template>
+        <think>
+        <set name="topic">HERRAMIENTAS</set>
+        </think>
+        Creo que no tengo eso.
+    </template>
+</category>
+
+
+
+
+
+
+<category>
     <pattern>herramientas</pattern>
-    <template>Claro! que herramientas quieres?</template>
+    <template>
+        Claro! que herramientas quieres?
+        <think><set name="topic">HERRAMIENTAS</set></think>
+    </template>
 </category>
 <category>
-    <pattern>herramienta</pattern>
+    <pattern>herramienta</pattern> 
     <template><srai>herramientas</srai></template>
+</category>
+<category>
+    <pattern>instrucciones</pattern>
+    <template>
+        <think><set name="topic">INSTRUCCIONES</set></think>
+        Okay vayamos a las instrucciones
+    </template>
 </category>
 
 
+<topic name="HERRAMIENTAS">
 
-
+<category>
+    <that>que herramientas quieres</that>
+    <pattern><set>herramientas</set></pattern>
+    <template>
+        Bueno <think><set name="tools"><star/></set></think> si tengo eso
+    </template>
+</category>
 
 <category>
     <that>que herramientas quieres</that>
     <pattern>*</pattern>
     <template>
-        Bueno <think><set name="tools"><star/></set></think> <random>
-            <li>Si tengo eso</li>
-            <li>No tengo eso</li>
-        </random>
+        Bueno <think><set name="not_tools"><star/></set></think> no tengo eso
     </template>
 </category>
 
@@ -116,11 +155,13 @@
     </template>
 </category>
 
+
 <category>
     <that>QUIERES INSTRUCCIONES</that>
     <pattern>SI</pattern>
     <template>
         Okay te dare instrucciones
+        <think><set name="topic">INSTRUCCIONES</set></think>
     </template>
 </category>
 
@@ -131,6 +172,30 @@
         Entonces adios! cuidate
     </template>
 </category>
+
+</topic>
+
+<topic name="INSTRUCCIONES">
+    
+    <category>
+        <that>Okay vayamos a las instrucciones</that>
+        <pattern>OK</pattern>
+        <template>Que deseas armar</template>
+    </category>
+    
+    <category>
+        <that>OKAY TE DARE INSTRUCCIONES</that>
+        <pattern>OK</pattern>
+        <template>Que deseas armar</template>
+    </category>
+    
+    <category>
+        <that>QUE DESEAS ARMAR</that>
+        <pattern>armar * <set>instrucciones</set></pattern>
+        <template><map name="instrucciones"><star index="2"></star></map></template>
+    </category>
+</topic>
+
 
 
   <category>
