@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+
+
+<category>
+    <pattern>Hola</pattern>
+    <template>
+    <random>
+        <li> Sabes decir algo mas?</li>
+        <li> Hola! ¿Como te llamas? yo soy <bot name="name"/></li>
+        <li> Hola! ¿Como te llamas? yo soy <bot name="name"/></li>
+        <li> Ya te saludé...</li>
+        <li> Hola! ¿Como te llamas? yo soy <bot name="name"/></li>
+        <li> Hola! ¿Como te llamas? yo soy <bot name="name"/></li>
+        <li> Hola! ¿Como te llamas? yo soy <bot name="name"/></li>
+        <li> Hola otra vez!</li>
+        <li> Hola!</li>
+        <li> Hola?</li>
+        <li> Cómo te ha ido? apuesto a que puedo ayudarte! </li>
+    </random>
+    </template>
+</category>
+
+<category>
+    <pattern>Hola *</pattern>
+    <template>
+        Hola! soy bot asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?
+        </template>
+</category>
+
+<category>
+    <pattern>Hola * soy *</pattern>
+    <template> <set name="nombre_cli"><star index="2"/></set> Hola! soy <bot name="name"/>, un asistente para seleccionar las mejores herramientas de carpintería según lo que necesites. ¿Necesitas herramientas o instrucciones?</template>
+</category>
+
+<category>
+    <pattern>yo soy *</pattern>
+    <template>Hola <set name="nombre_cli"><star index="1"/></set>! yo soy <bot name="name"/></template>
+</category>
+
+<category>
+    <pattern>me llamo *</pattern>
+    <template><srai>YO SOY <set name="nombre_cli"><star index="1"/></set></srai></template>
+</category>
+
+
+
+<category>
+    <pattern>quien soy yo</pattern>
+    <template>Claro! <srai>QUIEN SOY</srai></template>
+</category>
+
+<category>
+    <pattern>quien soy</pattern>
+    <template>Eres <get name="nombre_cli"></get> un buen cliente mío ☺ </template>
+</category>
+
+<category>
+    <pattern>sabes quien soy</pattern>
+    <template>Claro! <srai>QUIEN SOY</srai></template>
+</category>
+
+<category>
+    <pattern>herramientas</pattern>
+    <template>Claro! que herramientas quieres?</template>
+</category>
+<category>
+    <pattern>herramienta</pattern>
+    <template><srai>herramientas</srai></template>
+</category>
+
+
+
+
+
+<category>
+    <that>que herramientas quieres</that>
+    <pattern>*</pattern>
+    <template>
+        Bueno <think><set name="tools"><star/></set></think> <random>
+            <li>Si tengo eso</li>
+            <li>No tengo eso</li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <that>BUENO NO TENGO ESO</that>
+    <pattern>*</pattern>
+    <template>
+        Quieres otra herramienta?
+    </template>
+</category>
+
+<category>
+    <that>BUENO Si tengo eso</that>
+    <pattern>*</pattern>
+    <template>
+        Quieres otra herramienta?
+    </template>
+</category>
+
+<category>
+    <that>QUIERES OTRA HERRAMIENTA</that>
+    <pattern>SI</pattern>
+    <template>
+        <srai>herramientas</srai>
+    </template>
+</category>
+
+<category>
+    <that>QUIERES OTRA HERRAMIENTA</that>
+    <pattern>NO</pattern>
+    <template>
+        Quieres instrucciones?
+    </template>
+</category>
+
+<category>
+    <that>QUIERES INSTRUCCIONES</that>
+    <pattern>SI</pattern>
+    <template>
+        Okay te dare instrucciones
+    </template>
+</category>
+
+<category>
+    <that>QUIERES INSTRUCCIONES</that>
+    <pattern>NO</pattern>
+    <template>
+        Entonces adios! cuidate
+    </template>
+</category>
+
+
+  <category>
+    <pattern>* *</pattern>
+    <template>Creo que no sé sobre eso :c </template>
+  </category>
+
+</aiml>
